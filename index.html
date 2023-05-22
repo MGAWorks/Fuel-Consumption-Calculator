@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fuel Consumption Calculator</title>
+    <style>
+        body {
+            background-image: url('Photo_highway.jpg');
+            background-size: cover;
+            background-position: center;
+            font-size: 22px;
+            text-align: center;
+        }
+        h1, h2, p {
+            color: black;
+	    font-weight: bold;
+        }
+    </style>
+    <script>
+        function calculate() {
+            var distance = parseFloat(document.getElementById("distance").value);
+            var consumption = parseFloat(document.getElementById("consumption").value);
+            var price = parseFloat(document.getElementById("price").value);
+            var currency = document.getElementById("currency").value;
+            var result = (consumption / 100) * distance * price;
+
+            document.getElementById("total-consumption").textContent = result.toFixed(2) + " " + currency;
+            document.getElementById("total-cost").textContent = (distance * price).toFixed(2) + " " + currency;
+        }
+
+        function resetData() {
+            document.getElementById("distance").value = "";
+            document.getElementById("consumption").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("currency").value = "EUR";
+            document.getElementById("total-consumption").textContent = "";
+            document.getElementById("total-cost").textContent = "";
+        }
+    </script>
+</head>
+<body>
+    <h1>Fuel Consumption Calculator</h1>
+    <p>Calculate fuel consumption for any trip using our simple calculator.</p>
+    <form>
+        <label for="distance">Distance (in kilometers or miles):</label><br>
+        <input type="number" id="distance" required><br><br>
+
+        <label for="consumption">Fuel average consumption (per 100 kilometers or miles):</label><br>
+        <input type="number" id="consumption" required><br><br>
+
+        <label for="price">Price of fuel per liter or gallon:</label><br>
+        <input type="number" id="price" step="0.01" required><br><br>
+
+        <label for="currency">Currency:</label><br>
+        <select id="currency">
+            <option value="EUR">Euro</option>
+	    <option value="USD">American Dollar</option>
+            <option value="GBP">Pound Sterling</option>
+	    <option value="RON">Romanian New Leu</option>
+        
+        </select><br><br>
+
+        <button type="button" onclick="calculate()">Calculate</button>
+        <button type="button" onclick="resetData()">Reset Data</button>
+    </form>
+
+    <h2>Results:</h2>
+    <p id="total-consumption"></p>
+   
+
+    <p>Fuel consumption calculation - Enter all the above fields to find out the result.</p>
+</body>
+</html>
